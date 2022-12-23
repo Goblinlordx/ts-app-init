@@ -1,0 +1,32 @@
+#! /bin/bash
+
+COMMAND=$1
+shift 1
+
+case $COMMAND in
+  "install")
+    docker compose run node npm i
+    ;;
+  "start")
+    docker compose run node npm start
+    ;;
+  "watch")
+    docker compose run node npm run watch
+    ;;
+  "build")
+    docker compose run node npm run build
+    ;;
+  "shell")
+    docker compose run node /bin/bash
+    ;;
+  "npm")
+    docker compose run node npm $*
+    ;;
+  "node")
+    docker compose run node npm run node
+    ;;
+  *)
+    echo "Invalid command"
+    echo "  Usage: dev [start | watch | build | shell | npm | node]"
+    ;;
+esac
